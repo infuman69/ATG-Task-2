@@ -22,7 +22,7 @@ import erpBg from "../Assets/erp-bg.jpg";
 import erp from "../Assets/erp-app-development-service.svg";
 import milto1 from "../Assets/melltoo-img1.svg";
 import milto2 from "../Assets/melltoo-img2.svg";
-import { gsap, Power3 } from "gsap";
+import { gsap, Power3, } from "gsap";
 export default function Scrolling() {
   let sec0 = useRef(null);
   let sec1 = useRef(null);
@@ -34,37 +34,39 @@ export default function Scrolling() {
 
   const [dot, setDot] = useState(0);
   const handleScroll = useCallback(() => {
-    setDot(Math.ceil((window.scrollY + 7) / 100)-1);
-  }, []);
+    setDot(Math.ceil((window.scrollY + 6) / 100 ) - 1);
+    console.log(dot)
+    console.log(window.scrollY)
+  }, [dot]);
   useEffect(() => {
     switch (dot) {
       case 0:
         gsap.from(sec0.children, {
-          duration: 1.5,
+          duration: 0.5,
           y: 400,
           ease: Power3.easeOut,
         });
         break;
       case 1:
         gsap.from(sec1.children[0], {
-          duration: 1.5,
+          duration: 0.5,
           y: 200,
           ease: Power3.easeOut,
         });
         gsap.from(sec1.children[1], {
-          duration: 1.5,
+          duration: 0.5,
           y: -200,
           ease: Power3.easeOut,
         });
         break;
       case 2:
         gsap.from(sec2.children[0], {
-          duration: 1.5,
+          duration: 0.5,
           y: 200,
           ease: Power3.easeOut,
         });
         gsap.from(sec2.children[1], {
-          duration: 1.5,
+          duration: 0.5,
           y: -200,
           ease: Power3.easeOut,
         });
@@ -74,12 +76,12 @@ export default function Scrolling() {
         const upper3 = [sec3.children[0], sec3.children[1], sec3.children[2]];
         const lower3 = [sec3.children[3], sec3.children[4]];
         gsap.from(upper3, {
-          duration: 1.5,
+          duration: 0.5,
           y: -200,
           ease: Power3.easeOut,
         });
         gsap.from(lower3, {
-          duration: 1.5,
+          duration: 0.5,
           y: 200,
           ease: Power3.easeOut,
         });
@@ -88,31 +90,31 @@ export default function Scrolling() {
         const upper4 = [sec4.children[0], sec4.children[1]];
         const lower4 = [sec4.children[3], sec4.children[4]];
         gsap.from(upper4, {
-          duration: 1.5,
+          duration: 0.5,
           y: -200,
           ease: Power3.easeOut,
         });
         gsap.from(sec4.children[2], {
-          duration: 1.5,
+          duration: 0.5,
           x: 200,
           ease: Power3.easeOut,
         });
         gsap.from(lower4, {
-          duration: 1.5,
+          duration: 0.5,
           y: 200,
           ease: Power3.easeOut,
         });
         break;
       case 5:
         gsap.from(sec5.children[1], {
-          duration: 1.5,
+          duration: 0.5,
           y: 400,
           ease: Power3.easeOut,
         });
         break;
         case 6:
           gsap.from(sec6.children, {
-            duration: 1.5,
+            duration: 0.5,
             y: 400,
             ease: Power3.easeOut,
           });
@@ -259,7 +261,7 @@ export default function Scrolling() {
         return (
           <section
             className="Panel"
-            style={{ backgroundColor: "#0d131a", height:"100vh" }}
+            style={{ backgroundColor: "#0d131a ", height:"100vh" }}
           >
             <SectionCard
               SvgTxt1="Redefining"
@@ -474,7 +476,7 @@ export default function Scrolling() {
 
       default:
         console.log("I'm in default");
-        return;
+        return null;
     }
   }
   return <div>{currentPage()}</div>;

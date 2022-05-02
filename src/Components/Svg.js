@@ -32,14 +32,16 @@ export default function Svg() {
     dot6.children[1].children[0].style.opacity = 0;
   }
   function dotSelect(pathLength) {
-    const dot = Math.floor((window.scrollY + 7) / 100);
+    const dot = Math.ceil((window.scrollY + 6) / 100) - 1;
     if (dot === 0) {
       gsap.to(Opaque_Ring, {
         duration: 0.75,
         strokeDashoffset: pathLength,
         ease: Power3.easeOut,
       });
-    } else {
+    } else if(dot === 7){
+      return ;
+    } else{
       gsap.to(Opaque_Ring, {
         duration: 0.75,
         strokeDashoffset: pathLength * (1 - (1 / 6) * dot),
@@ -132,7 +134,6 @@ export default function Svg() {
         PathImg.style.backgroundColor = "#00824B";
         break;
       default:
-        PathImg.style.backgroundColor = "#6211A7";
         break;
     }
   }
@@ -144,7 +145,7 @@ export default function Svg() {
     Opaque_Ring.getBoundingClientRect();
     window.addEventListener("scroll", () => {
       dotSelect(pathLength);
-      //Opaque_Ring.style.strokeDashoffset = pathLength * (1 - scrollPercentage);
+      // Opaque_Ring.style.strokeDashoffset = pathLength * (1 - scrollPercentage);
     });
   });
 
